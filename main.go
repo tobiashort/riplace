@@ -124,6 +124,11 @@ func main() {
 		})
 	}
 
+	if len(changes) == 0 {
+		fmt.Println("No changes.")
+		os.Exit(0)
+	}
+
 	changesGroupedByFile := groupby.GroupBy(changes, func(a, b Change) bool { return a.File == b.File })
 
 	tabwriter := tabwriter.NewWriter(os.Stdout, 0, 4, 4, ' ', 0)
