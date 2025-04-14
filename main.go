@@ -48,6 +48,10 @@ func main() {
 	cmd := exec.Command("rg", args...)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
+		if string(out) == "" {
+			fmt.Println("No matches.")
+			os.Exit(1)
+		}
 		fmt.Fprint(os.Stderr, string(out))
 		panic(err)
 	}
